@@ -1,0 +1,25 @@
+<body #container>
+    <div #invitationContainer class="invitation-container" >
+          
+        <div class="text-container">
+            <h1>Event Invitation</h1>
+
+            <div class="event-details">
+                <p><strong>Title:</strong>{{eventDetails.eventTitle}}</p>
+                <p><strong>Description:</strong>{{eventDetails.eventDesc}}</p>
+                <p><strong>Venue:</strong>{{eventDetails.vanue}}</p>
+                <p><strong>Start Date:</strong>{{eventDetails.startDate | date:"MMM d,y"}}</p>
+                <p><strong>Start Time:</strong>{{eventDetails.startTime}}</p>
+                <p><strong>End Date:</strong> {{eventDetails.endDate | date:"MMM d,y"}}</p>
+                <p><strong>End Time:</strong> {{eventDetails.endTime}}</p>
+                <p><strong>Event Creator:</strong> {{eventDetails.createdBy}}</p>
+                <p class="note" *ngIf="eventDetails.note != null"><strong>Note:</strong> {{eventDetails.note}}.</p>
+            </div>
+
+            <div class="invitation">
+                <p>You are cordially invited to the event. We hope you can join us!</p>
+                <p>Please save the date and time.</p>
+            </div>
+        </div>
+    </div>
+</body>

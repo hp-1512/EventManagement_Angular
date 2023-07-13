@@ -1,0 +1,10 @@
+.bottom-links > a{
+    text-decoration: none;
+    color:gray;
+}
+
+@media screen and (max-width: 990px) {
+    .login-form{
+        margin-top:2%;
+    }
+};

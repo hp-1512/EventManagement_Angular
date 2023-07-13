@@ -1,0 +1,104 @@
+<div class="container grid-container">
+    <div class="d-flex my-4 justify-content-between">
+
+        <a class="btn btn-primary"[routerLink]="['../eventCreation']">Create Event</a>
+
+    </div>
+    <div class="row justify-content-center ">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 align-items-stretch" *ngFor="let event of eventsList">
+            <div class="card">
+                <div id="img-part-card" style="position: relative; height:240px">
+
+                    <div class="d-flex position-absolute pt-2 badgeclass" style="z-index: 2;"
+                        *ngIf=" event.startDate <= dateNow && event.endDate >= dateNow">
+                        <span class="badge1 bg-success text-dark ms-1 py-2">OnGoing</span>
+                    </div>
+                    <div class="d-flex position-absolute pt-2 badgeclass" style="z-index: 2;"
+                        *ngIf=" event.endDate < dateNow">
+                        <span class="badge1 bg-warning text-dark ms-1 py-2">Completed<i
+                                class="bi bi-patch-check text-white  px-2"></i></span>
+                    </div>
+                    <div class="d-flex position-absolute pt-2 badgeclass" style="z-index: 2;"
+                        *ngIf=" event.startDate > dateNow ">
+                        <span class="badge1 bg-info text-dark ms-1 py-2 ">Upcoming<i
+                                class="bi bi-patch-exclamation text-white px-2"></i></span>
+                    </div>
+                    <img class="card-img-top h-100 mission-img"
+                        src="./../../../assets/EventsImages/{{event.eventImage}}" alt="Card image cap"
+                        style="z-index: 1;" *ngIf="event.eventImage != null">
+
+                    <img class="card-img-top h-100" id="mission-img" src="./../../../assets/EventsImages/NoImg.jpg"
+                        alt="Card image cap" style="z-index: 1;" *ngIf="event.eventImage == null">
+                    <a class="bg-dark bg-opacity-50 border-0 btn" id="likeThisMission" (click)="downloadInvitation(event.eventId)">
+                        <i class="bi bi-download text-white"></i>
+                    </a>
+                    <a class="bg-dark bg-opacity-50 border-0 btn" id="shareToFriend" (click)="shareEvent(event.eventId)">
+                        <i class="bi bi-share-fill text-white"></i>
+                    </a>
+
+                </div>
+                <div class="card-body p-0">
+                    <h5 class="card-title mt-3 px-3 search-inp"
+                        style="overflow-y: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+                        {{event.eventTitle}}</h5>
+                    <div class="card-text px-3"
+                        style="overflow-y: hidden;display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow-x: hidden;">
+                        {{event.eventDesc}}</div>
+
+                    <div class="d-flex flex-wrap justify-content-around align-items-center px-3 py-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-person-circle me-2"></i>
+                            <div>
+                                <small>Creator:</small>
+                                <p class="mb-0">{{event.creator}}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt-fill me-2"></i>
+                            <div
+                                style="  max-width: 160px;  width: 160px; max-height: 80px;height: 80px; overflow:hidden; align-items:center">
+                                <small>Vanue:</small>
+                                <p class="mb-0">{{event.vanue}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top border-bottom mt-3" id="missionInfo" style="position: relative;">
+                        <div class="border text-center" id="missionPeriod">
+                            <small>{{event.startDate | date:"MMM d,y"}} to {{event.endDate | date:"MMM d,y"}}</small>
+                        </div>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <a class="btn btn-primary disabled d-flex align-items-center justify-content-center mx-3 my-2 participateBtn"
+                            *ngIf="event.endDate >= dateNow && event.participatedUser != null">
+                            Participated
+                        </a>
+
+                        <a asp-controller="Home" asp-action="Participate"
+                            class="btn btn-primary d-flex align-items-center justify-content-center mx-3 my-2 participateBtn"
+                            *ngIf="event.maxParticipant != 0 && event.endDate >= dateNow">
+                            Participate
+                            <span class="ps-2">⟶</span>
+                        </a>
+
+                        <a class="btn btn-primary disabled d-flex align-items-center justify-content-center mx-3 my-2 participateBtn"
+                            *ngIf="event.endDate < dateNow">
+                            Closed
+                        </a>
+
+                        <a class="btn btn-primary disabled d-flex align-items-center justify-content-center mx-3 my-2 participateBtn"
+                            *ngIf="event.maxParticipant == 0">
+                            Seats occupied
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

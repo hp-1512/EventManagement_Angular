@@ -1,0 +1,124 @@
+<!-- @{
+    ViewData["Title"] = "Create Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Event_Management.Entities.Models.EventCreation; -->
+
+<!-- <link rel="stylesheet" href="~/css/ImageUploder.css"> -->
+
+<div class="container-fluid p-0">
+    <div class="border-bottom add-edit-heading">
+        <h5 class="heading">Create Event</h5>
+    </div>
+    <div id="form">
+        <form asp-controller="Home" asp-action="CreateEvent" method="post" enctype="multipart/form-data">
+            <div class="form-content">
+                <div class="form-group">
+                    <label class="form-label" asp-for="EventTitle">Event Title</label>
+                    <input asp-for="EventTitle" type="text" class="form-control" id="eventTitle"
+                           placeholder="Enter event title">
+                    <span class="text-danger" asp-validation-for="EventTitle"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" asp-for="EventDesc">Event Description</label>
+                    <textarea asp-for="EventDesc" rows="3" class="form-control" id="eventDesc"
+                              placeholder="Enter event description"></textarea>
+                    <!-- @if (TempData["error1"] != null)
+                    {
+                        <span class="text-danger">
+                            @TempData["error1"]
+                        </span>
+                    } -->
+                    <span class="text-danger" asp-validation-for="EventDesc"></span>
+                </div>
+                <div class="form-group">
+                    <label class="mb-1" asp-for="Note">Note</label>
+                    <textarea asp-for="Note" class="w-100" style="min-height: 300px" id="note"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" asp-for="Vanue">Event Vanue</label>
+                    <input asp-for="Vanue" type="text" class="form-control" id="addressInput"
+                           placeholder="Enter Event Vanue" >
+                    <span class="text-danger" asp-validation-for="Vanue"></span>
+                </div>
+                <div class="row my-3">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="StartDate">Select StartDate</label>
+                            <!-- <input asp-for="StartDate" value="" type="date" class="form-control" id="startDate" min="@Convert.ToDateTime(@DateTime.Now.AddDays(1)).ToString("yyyy-MM-dd")" onchange="setEndDate()"> -->
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="EndDate">Select EndDate</label>
+                            <input asp-for="EndDate" value="" type="date" class="form-control" id="endDate">
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="StartTime">Select Start Time</label>
+                            <input asp-for="StartTime" type="time" class="form-control" id="startTime" onchange="setEndTime()">
+                            <span asp-validation-for="StartTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="EndTime">Select End Time</label>
+                            <input asp-for="EndTime" type="time" class="form-control" id="endTime">
+                            <span asp-validation-for="EndTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" asp-for="MaxParticipants">Allowed Participants</label>
+                    <input asp-for="MaxParticipants" type="number" class="form-control" id="maxParticipants"
+                           placeholder="Enter total seats" min=0>
+                    <span class="text-danger" asp-validation-for="MaxParticipants"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" asp-for="CreatedBy">Created By</label>
+                    <input asp-for="CreatedBy" type="text" class="form-control" id="createdBy"
+                           hidden>
+                    <input type="text" class="form-control" id="createdByForDisplay" readonly>
+                    <span class="text-danger" asp-validation-for="CreatedBy"></span>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <p class="mb-1">Upload Images</p>
+                    </div>
+                    <div>
+                        <label class="preview-event-images d-block"></label>
+                    </div>
+                    <!-- @if (TempData["error"] != null)
+                    {
+                        <span class="text-danger">
+                            @TempData["error"]
+                        </span>
+                    } -->
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mt-3">
+                <a asp-controller="Home" asp-action="EventsPage" class="btn px-4 mb-5 cancel-btn rounded-pill me-4">Cancel</a>
+                <button class="btn btn-primary px-4 mb-5 submit-btn rounded-pill" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/CreateEvent.js"></script> -->
+<!-- <script>  
+      $(document).ready(function(){
+          $(".preview-event-images").imageUploader({});
+          loggedUser();
+        
+      });
+      
+
+</script> -->

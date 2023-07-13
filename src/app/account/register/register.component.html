@@ -1,0 +1,66 @@
+<form [formGroup]="registerForm" class="col-lg-10 col-md-10 col-sm-10 col-xs-10 mx-auto" (submit)="submitRegistrationForm()">
+    <div class="form-group mb-2">
+        <label class="form-label">First Name</label>
+        <input class="form-control" formControlName="firstName" type="text" id="exampleFirstName" placeholder="Enter Your Frist Name"  >
+        <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"> 
+            <span class="text-danger" *ngIf="registerForm.get('firstName')?.errors?.['required']">First Name is required.</span>
+            <span class="text-danger" *ngIf="registerForm.get('firstName')?.hasError('maxlength')">First Name is too long. </span>
+        </div>
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">Last Name</label>
+        <input class="form-control" formControlName="lastName" type="text" id="exampleLastName" placeholder="Enter Your Last Name">
+        <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"> 
+            <span class="text-danger" *ngIf="registerForm.get('lastName')?.errors?.['required']">Last Name is required.</span>
+            <span class="text-dangerk" *ngIf="registerForm.get('lastName')?.hasError('maxlength')">Last Name is too long. </span>
+        </div>
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" formControlName='email' (focusout)="validateEmail($event)" id="exampleemail" aria-describedby="emailHelp"
+               placeholder="Enter YourEmail ID">
+        <span class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            {{ registerForm.get('email')?.errors?.['message'] }}
+        </span>
+        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+            <span class="text-danger" *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span class="text-danger" *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</span>
+        </div>
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Create Your Password">
+        <span class="text-danger"
+            *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
+        >Passwords must be mininum 8 characters long.
+        </span>
+        <span class="text-danger"
+            *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+        >Passwords is required.
+        </span>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input formControlName="confirmPassword" type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password">
+        <span class="text-danger"
+            *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+        >Passwords do not match
+        </span>
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">User Name</label>
+        <input type="text"  class="form-control" formControlName="userName" (focusout)="validateUsername($event)" placeholder="Enter Your UserName" >
+        <div>
+            <span class="text-danger" *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched">
+                {{ registerForm.get('userName')?.errors?.['message'] }}
+            </span>
+          </div>
+          
+    </div>
+    
+    <button id="register-btn" class="btn btn-primary col-12 my-4" type="submit" >Register </button>
+
+    <div id="lost-password-div" class="">
+        <p class="mt-2 bottom-links">Already registered?<a [routerLink]="['./../']" class="">Login now</a></p>
+    </div>
+</form>

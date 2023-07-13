@@ -1,0 +1,35 @@
+#likeThisMission {
+    position: absolute;
+    bottom: 65px;
+    right: 10px;
+}
+
+#shareToFriend {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+#clear-all-notification :hover{
+    color:black;
+}
+
+/*Cards badges*/
+.badge1 {
+    width: 95px;
+    display: inline-block;
+    padding: 0.35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: white !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0 50px 50px 0;
+}
+
+.badgeclass {
+    left: -4px;
+}
+/*End of Cards badges*/
