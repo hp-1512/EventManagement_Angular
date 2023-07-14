@@ -3,6 +3,7 @@ import {FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,13 @@ export class LoginComponent {
 
   // ngOnInit() {
   // }
-
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
   onLoginSubmit() {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
@@ -43,7 +50,14 @@ export class LoginComponent {
           this.loginForm.setErrors({InvalidUser:true})
         }
         else{
-          localStorage.setItem('token', data.token);
+          const tokenInfo = this.getDecodedAccessToken(data.encodedToken); // decode token
+          console.log(tokenInfo);
+          // debugger;
+          const expireDate = tokenInfo.exp; 
+          localStorage.setItem('token', data.encodedToken);
+
+          localStorage.setItem('userId', tokenInfo.nameid);
+          localStorage.setItem('userName',tokenInfo.unique_name)
           this.router.navigateByUrl('home');
         }
       }

@@ -50,33 +50,33 @@ export class EventsPageComponent {
       this.eventsList = data;
     });
     // $(document).ready(function () {
-      $('.card-text').on('click', function () {
-        if ($('.card-text').css('overflow-y') == 'scroll') {
-          $('.card-text').scrollTop(0);
-          $('.card-text').css({
-            'height': 'auto', '-webkit-line-clamp': '2', 'overflow-y': 'hidden'
-          });
-        }
-        else {
-          $('.card-text').css({
-            'height': '48px', '-webkit-line-clamp': '', 'overflow-y': 'scroll'
-          });
-        }
-      })
-      $('.card-title').on('click', function () {
-        if ($(this).css('overflow-y') == 'scroll') {
-          $(this).scrollTop(0);
-          $(this).css({
-            'height': 'auto', '-webkit-line-clamp': '2', 'overflow-y': 'hidden'
-          });
+      // $('.card-text').on('click', function () {
+      //   if ($('.card-text').css('overflow-y') == 'scroll') {
+      //     $('.card-text').scrollTop(0);
+      //     $('.card-text').css({
+      //       'height': 'auto', '-webkit-line-clamp': '2', 'overflow-y': 'hidden'
+      //     });
+      //   }
+      //   else {
+      //     $('.card-text').css({
+      //       'height': '48px', '-webkit-line-clamp': '', 'overflow-y': 'scroll'
+      //     });
+      //   }
+      // })
+      // $('.card-title').on('click', function () {
+      //   if ($(this).css('overflow-y') == 'scroll') {
+      //     $(this).scrollTop(0);
+      //     $(this).css({
+      //       'height': 'auto', '-webkit-line-clamp': '2', 'overflow-y': 'hidden'
+      //     });
 
-        }
-        else {
-          $(this).css({
-            'height': '25px', '-webkit-line-clamp': '', 'overflow-y': 'scroll'
-          });
-        }
-      })
+      //   }
+      //   else {
+      //     $(this).css({
+      //       'height': '25px', '-webkit-line-clamp': '', 'overflow-y': 'scroll'
+      //     });
+      //   }
+      // })
     // })
 
   }

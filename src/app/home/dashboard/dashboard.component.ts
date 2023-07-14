@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { EventsDataPieChartModel } from '../../models/dashboard-data';
-
 import { UsersDataPieChartModel ,AnnualDataBarChartModel} from '../../models/dashboard-data';
-
 import { DashboardService } from '../../services/dashboard.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

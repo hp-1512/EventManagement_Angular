@@ -13,4 +13,5 @@ export interface EventModel {
     eventDesc:string;
     maxParticipant:number;
     participatedUser:number;
+    note:string;
 }

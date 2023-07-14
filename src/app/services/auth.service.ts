@@ -2,15 +2,16 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-// import { JwtHelperService } from '@angular/cli';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
-
+const jwtHelper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private router:Router) { }
   
 
   ifUserExist(userName: any, password: any): Observable<any> {
@@ -26,6 +27,10 @@ export class AuthService {
   logout(): void {
     // Clear the stored token
     localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+
+    localStorage.removeItem('userId');
+
   }
 
   // isLoggedIn(): boolean {
@@ -33,4 +38,14 @@ export class AuthService {
   //   const token = localStorage.getItem('token');
   //   return token && !this.jwtHelper.isTokenExpired(token);
   // }
+  isUserAuthenticated() {
+    const token = localStorage.getItem("token");
+    if (token && !jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      this.router.navigate(["login"]);
+      return false;
+    }
+  }
 }

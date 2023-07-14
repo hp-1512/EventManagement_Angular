@@ -8,7 +8,8 @@ import { EventInvitationComponent } from './event-invitation/event-invitation.co
 import { CreateEventComponent } from './create-event/create-event.component';
 import { CratedEventsComponent } from './crated-events/crated-events.component';
 import { ParticipatedEventsComponent } from '../participated-events/participated-events.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+// import { Chart } from 'chart.js/auto';
 @NgModule({
   declarations: [
     EventsPageComponent,
@@ -19,10 +20,12 @@ import { ParticipatedEventsComponent } from '../participated-events/participated
   imports: [
     CommonModule,
     HomeRoutingModule,
+    ReactiveFormsModule 
   ],
   providers:[
     DatePipe,
     EventInvitationComponent,
+    // Chart
   ]
 })
 export class HomeModule { }
